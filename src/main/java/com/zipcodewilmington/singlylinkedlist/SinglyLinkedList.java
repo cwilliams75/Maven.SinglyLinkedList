@@ -6,6 +6,20 @@ import javax.xml.soap.Node;
  * Created by leon on 1/10/18.
  */
 public class SinglyLinkedList<T> {
+    private Node head;
+    private int listSize = 0;
+
+    public Integer getSizeOfList() {
+        return getSizeOfList();
+    }
+
+    public void addElement(T element1) {
+    }
+
+    public T getElementByIndex(int i) {
+        return getElementByIndex();
+    }
+
     private class Node {
 
         private T element;
@@ -35,6 +49,16 @@ public class SinglyLinkedList<T> {
         public void setElement(T element) {
             this.element = element;
         }
+    }
+
+    private void incrementListSize(){
+        listSize++;
+    }
+    private void decrementListSize(){
+        listSize--;
+    }
+    private int getListSize(){
+        return listSize;
     }
 
     }
