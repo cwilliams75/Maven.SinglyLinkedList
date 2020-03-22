@@ -1,35 +1,37 @@
 package com.zipcodewilmington.singlylinkedlist;
 
-import javax.xml.soap.Node;
-
 /**
  * Created by leon on 1/10/18.
  */
 public class SinglyLinkedList<T> {
 
-    private Node head;
+    private Node<T> head;
     private int listSize = 0;
 
-    private class Node {
+    public int getSizeOfList() {
+        return listSize;
+    }
+
+    private class Node<T> {
 
         private T element;
-        private Node next;
+        private Node<T> next;
 
         public Node(T element) {
             this.element = element;
             next = null;
         }
 
-        public Node(T element, Node next) {
+        public Node(T element, Node<T> next) {
             this.element = element;
             this.next = next;
         }
 
-        public Node getNext() {
+        public Node<T> getNext() {
             return next;
         }
 
-        public void setNext(Node next) {
+        public void setNext(Node<T> next) {
             this.next = next;
         }
 
@@ -54,12 +56,12 @@ public class SinglyLinkedList<T> {
 
 
     public void addElement(T element) {
-        Node newNode = new Node(element);
+        Node<T> newNode = new Node<T>(element);
 
         if (this.head == null) {
             this.head = newNode;
         } else {
-            Node last = head;
+            Node<T> last = head;
 
             while (last.getNext() != null) {
                 last = last.getNext();
@@ -77,8 +79,8 @@ public class SinglyLinkedList<T> {
             head = head.getNext();
             return true;
         }
-        Node previous = null;
-        Node current = head;
+        Node<T> previous = null;
+        Node<T> current = head;
         for (int listIndex = 1; listIndex < index; listIndex++) {
             previous = current.getNext();
             current = current.getNext();
@@ -92,7 +94,7 @@ public class SinglyLinkedList<T> {
         if (head == null) {
             return false;
         }
-        Node selectedElement = head;
+        Node<T> selectedElement = head;
         if (selectedElement.getElement().equals(element)) {
             return true;
         }
@@ -109,6 +111,12 @@ public class SinglyLinkedList<T> {
         if (head == null) {
             return -1;
         }
+        Node<T> selectedNode = head;
+        for (int i = 0; i < getListSize(); i++) ;
+        if (selectedNode.getElement().equals(element)) {
+
+        }
+        selectedNode = selectedNode.getNext();
         return 1;
     }
 
@@ -119,7 +127,7 @@ public class SinglyLinkedList<T> {
     public T getElementByIndex(int index) {
         if (index < 0 || index > getListSize())
             return null;
-        Node selectedElement = head;
+        Node<T> selectedElement = head;
         for (int i = 0; i < index; i++) {
             selectedElement = selectedElement.getNext();
         }
@@ -135,5 +143,20 @@ public class SinglyLinkedList<T> {
         return copyList;
     }
 
+    public void sortList() {
+        for (int i = 0; i < listSize; i++) {
+            Node<T> currentNode = head;
+            Node<T> nextNode = head.next;
 
+            for (int j = 0; j < listSize - 1; j++) {
+                if (currentNode.element).compareTo(nextNode.element) > 0){
+                    T temp = currentNode.element;
+                    currentNode.setElement(nextNode.element);
+                    nextNode.setElement(temp);
+                }
+                currentNode = nextNode;
+                nextNode = nextNode.next;
+            }
+        }
+    }
 }
